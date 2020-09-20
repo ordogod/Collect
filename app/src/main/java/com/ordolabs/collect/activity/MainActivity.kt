@@ -1,7 +1,8 @@
-package com.ordolabs.collect
+package com.ordolabs.collect.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.ordolabs.collect.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
