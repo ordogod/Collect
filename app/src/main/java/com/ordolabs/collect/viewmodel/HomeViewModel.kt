@@ -1,6 +1,6 @@
 package com.ordolabs.collect.viewmodel
 
-class MainViewModel : BaseViewModel() {
+class HomeViewModel : BaseViewModel() {
 
     // nothing's here for a while
 }
