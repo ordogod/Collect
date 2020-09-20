@@ -53,12 +53,11 @@ android {
 
 dependencies {
 
-//    //Local Libs
-//    implementation project(':domain')
-//    implementation project(':data-local')
-//    implementation project(':data-remote')
+    // App libs
+    implementation project(':data')
+    implementation project(':domain')
 
-    //Jetpack
+    // Jetpack
     implementation appDependencies.appCompat
     implementation appDependencies.androidxKtx
     implementation appDependencies.constraintLayout
@@ -66,17 +65,17 @@ dependencies {
     implementation appDependencies.fragmentKtx
     implementation appDependencies.lifecycleExtensions
 
-    //Material
+    // Material
     implementation appDependencies.material
 
-    //Animations
+    // Animations
     implementation appDependencies.recyclerviewAnimations
 
     // Koin
     implementation appDependencies.koinAndroid
     implementation appDependencies.koinAndroidViewModel
 
-    //Test Libs
+    // Test Libs
     testImplementation testDependencies.junit
     testImplementation testDependencies.androidxJunit
     testImplementation testDependencies.coroutinesTest
