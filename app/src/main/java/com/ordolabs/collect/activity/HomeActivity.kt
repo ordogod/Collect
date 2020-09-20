@@ -1,12 +1,11 @@
 package com.ordolabs.collect.activity
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.ordolabs.collect.R
 
-class HomeActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+class HomeActivity : BaseActivity(R.layout.activity_home) {
+
+    override fun setViews() {
+
     }
+
 }
