@@ -9,11 +9,21 @@ abstract class BaseActivity(@LayoutRes private val layoutResId: Int) : AppCompat
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutResId)
+        setUp()
         setViews()
+    }
+
+    /**
+     * Configures non-view components.
+     */
+    protected open fun setUp() {
+        // override me
     }
 
     /**
      * Sets activity's views and configures them.
      */
-    abstract fun setViews()
+    protected open fun setViews() {
+        // override me
+    }
 }
