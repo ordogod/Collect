@@ -4,7 +4,7 @@
     <!--~~~~~~~~~~~~~~~~~~~~ COMMON ~~~~~~~~~~~~~~~~~~~~-->
     <color name="content_bg">@android:color/white</color>
     <color name="window_background">#f7f7f7</color>
-    <color name="status_bar">@color/content_bg</color>
+    <color name="status_bar">@color/window_background</color>
     <color name="navigation_bar">@color/content_bg</color>
 
     <color name="accent_sky">#29B6F6</color>

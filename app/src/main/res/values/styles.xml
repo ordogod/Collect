@@ -17,7 +17,7 @@
 
     <!--~~~~~~~~~~~~~~~~~~~~ TOOLBAR ~~~~~~~~~~~~~~~~~~~-->
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:background">@android:color/white</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:textColorSecondary">@color/text_title</item>
     </style>
 
