@@ -51,7 +51,7 @@ ext {
             recyclerviewAnimations: "jp.wasabeef:recyclerview-animators:$recyclerviewAnimationVersion",
             koinAndroid           : "org.koin:koin-android:$koinVersion",
             koinLifeCycleScope    : "org.koin:koin-android-scope:$koinVersion",
-            koinAndroidViewModel  : "org.koin:koin-androidx-viewmodel:$koinVersion",
+            koinAndroidViewModel  : "org.koin:koin-androidx-viewmodel:$koinVersion"
     ]
 
     dataDependencies = [
