@@ -66,6 +66,7 @@ dependencies {
 
     // Animations
     implementation appDependencies.recyclerviewAnimations
+    implementation appDependencies.recyclerviewSelection
 
     // Koin
     implementation appDependencies.koinAndroid
