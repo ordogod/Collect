@@ -37,6 +37,10 @@ abstract class BaseViewHolder<T : Any>(itemView: View) :
      */
     protected abstract fun setViewsOnBind(item: T)
 
+    override fun onClick(v: View?) {
+        // default empty implementation
+    }
+
     override fun onLongClick(v: View?): Boolean {
         // default empty implementation
         return false
