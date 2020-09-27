@@ -56,8 +56,8 @@ dependencies {
     // Jetpack
     implementation appDependencies.appCompat
     implementation appDependencies.androidxKtx
+    implementation appDependencies.recyclerview
     implementation appDependencies.constraintLayout
-    implementation appDependencies.supportV4
     implementation appDependencies.fragmentKtx
     implementation appDependencies.lifecycleExtensions
 
