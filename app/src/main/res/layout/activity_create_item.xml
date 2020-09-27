@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/offset_16">
+    android:padding="@dimen/size_16">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/create_gl_list_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintGuide_begin="@dimen/offset_32"
+        app:layout_constraintGuide_begin="@dimen/size_32"
         android:orientation="vertical"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/create_gl_list_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintGuide_end="@dimen/offset_32"
+        app:layout_constraintGuide_end="@dimen/size_32"
         android:orientation="vertical"/>
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -31,7 +31,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/create_types_recycler"
-        android:layout_marginVertical="@dimen/offset_16"
+        android:layout_marginVertical="@dimen/size_16"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toStartOf="@+id/create_gl_list_end"

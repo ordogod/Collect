@@ -14,7 +14,7 @@ class ItemTypesAdapter(
     clicksListener: OnRecyclerItemClicksListener
 ) : BaseAdapter<ItemType, ItemTypesAdapter.TypeViewHolder>(clicksListener) {
 
-    val types: List<ItemType> = ItemType.expandedList
+    private val types: List<ItemType> = ItemType.expandedList
 
     override fun setItems(items: List<ItemType>) {
         // items are defined already
