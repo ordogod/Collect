@@ -18,7 +18,7 @@ class CreateItemActivity : BaseActivity(R.layout.activity_create_item),
     }
 
     private fun setItemTypesRecycler() {
-        builder_types_list.apply {
+        create_types_recycler.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = ItemTypesAdapter(this@CreateItemActivity)
         }
