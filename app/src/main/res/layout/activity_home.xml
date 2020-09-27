@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.HomeActivity">
 
-    <include layout="@layout/view_toolbar" />
+    <include layout="@layout/view_toolbar"
+        android:visibility="invisible"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/home_fab"

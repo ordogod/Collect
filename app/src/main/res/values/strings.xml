@@ -1,3 +1,12 @@
 <resources>
+    <!--~~~~~~~~~~~~~~~~~~~~ COMMON ~~~~~~~~~~~~~~~~~~~~-->
     <string name="app_name">Collect</string>
+
+    <!--~~~~~~~~~~~~~ NOTE BUILDER SCREEN ~~~~~~~~~~~~~~-->
+    <string name="builder_type_label">Select new item type:</string>
+
+    <string name="builder_type_note">Note</string>
+    <string name="builder_type_list">List</string>
+    <string name="builder_type_list_ordered">Ordered</string>
+    <string name="builder_type_list_unordered">Unordered</string>
 </resources>

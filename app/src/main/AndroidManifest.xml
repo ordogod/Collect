@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.ItemBuilderActivity" />
+        <activity android:name=".ui.activity.CreateItemActivity" />
 
     </application>
 
