@@ -1,8 +1,10 @@
 package com.ordolabs.collect.ui.adapter.base
 
-interface OnRecyclerItemClicksListener<T : Any> : OnRecyclerItemClickListener<T> {
+interface OnRecyclerItemClicksListener {
 
-    fun onRecyclerItemLongClick(item: T, position: Int) {
+    fun onRecyclerItemClick(position: Int)
+
+    fun onRecyclerItemLongClick(position: Int) {
         // default empty implementation
     }
 }

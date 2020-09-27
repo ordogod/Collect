@@ -43,7 +43,7 @@ abstract class BaseViewHolder<T : Any>(itemView: View) :
     @Suppress("UNCHECKED_CAST")
     open fun performClick() {
         val adapter = bindingAdapter as? BaseAdapter<T, *> ?: return
-        adapter.clicksListener.onRecyclerItemClick(boundItem, bindingAdapterPosition)
+        adapter.clicksListener.onRecyclerItemClick(bindingAdapterPosition)
     }
 
     /**
@@ -53,7 +53,7 @@ abstract class BaseViewHolder<T : Any>(itemView: View) :
     @Suppress("UNCHECKED_CAST")
     open fun performLongClick() {
         val adapter = bindingAdapter as? BaseAdapter<T, *> ?: return
-        adapter.clicksListener.onRecyclerItemLongClick(boundItem, bindingAdapterPosition)
+        adapter.clicksListener.onRecyclerItemLongClick(bindingAdapterPosition)
     }
 
 }

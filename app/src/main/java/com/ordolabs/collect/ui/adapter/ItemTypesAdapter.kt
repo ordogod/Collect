@@ -8,13 +8,13 @@ import com.ordolabs.collect.ui.adapter.base.BaseAdapter
 import com.ordolabs.collect.ui.adapter.base.BaseViewHolder
 import com.ordolabs.collect.ui.adapter.base.OnRecyclerItemClicksListener
 import com.ordolabs.collect.util.viewId
-import com.ordolabs.collect.viewmodel.ItemBuilderViewModel.ItemType
+import com.ordolabs.collect.viewmodel.CreateItemViewModel.ItemType
 
-class NoteTypesAdapter(
-    clicksListener: OnRecyclerItemClicksListener<ItemType>
-) : BaseAdapter<ItemType, NoteTypesAdapter.TypeViewHolder>(clicksListener) {
+class ItemTypesAdapter(
+    clicksListener: OnRecyclerItemClicksListener
+) : BaseAdapter<ItemType, ItemTypesAdapter.TypeViewHolder>(clicksListener) {
 
-    val types: List<ItemType> = ItemType.getExpandedList()
+    val types: List<ItemType> = ItemType.expandedList
 
     override fun setItems(items: List<ItemType>) {
         // items are defined already
@@ -34,7 +34,7 @@ class NoteTypesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return types.size
+        return ItemType.collapsedCount
     }
 
     class TypeViewHolder(root: View) : BaseViewHolder<ItemType>(root) {

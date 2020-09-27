@@ -6,19 +6,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ordolabs.collect.R
 import com.ordolabs.collect.ui.activity.base.BaseActivity
 import com.ordolabs.collect.ui.activity.base.StartableActivity
+import com.ordolabs.collect.ui.adapter.ItemTypesAdapter
+import com.ordolabs.collect.ui.adapter.base.OnRecyclerItemClicksListener
 import kotlinx.android.synthetic.main.activity_create_item.*
 
-class CreateItemActivity : BaseActivity(R.layout.activity_create_item) {
+class CreateItemActivity : BaseActivity(R.layout.activity_create_item),
+    OnRecyclerItemClicksListener {
 
     override fun setViews() {
-        setNoteTypesRecycler()
+        setItemTypesRecycler()
     }
 
-    private fun setNoteTypesRecycler() {
+    private fun setItemTypesRecycler() {
         builder_types_list.apply {
             layoutManager = LinearLayoutManager(context)
-
+            adapter = ItemTypesAdapter(this@CreateItemActivity)
         }
+    }
+
+    override fun onRecyclerItemClick(position: Int) {
+        // nothing's here for a while
     }
 
     companion object : StartableActivity {

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
  * An abstract implementation of [RecyclerView.Adapter].
  */
 abstract class BaseAdapter<T : Any, VH : BaseViewHolder<T>>(
-    var clicksListener: OnRecyclerItemClicksListener<T>
+    var clicksListener: OnRecyclerItemClicksListener
 ) : RecyclerView.Adapter<VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
