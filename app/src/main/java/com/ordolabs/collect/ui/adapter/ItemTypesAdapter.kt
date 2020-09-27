@@ -9,6 +9,7 @@ import com.ordolabs.collect.R
 import com.ordolabs.collect.ui.adapter.base.BaseAdapter
 import com.ordolabs.collect.ui.adapter.base.BaseViewHolder
 import com.ordolabs.collect.ui.adapter.base.OnRecyclerItemClicksListener
+import com.ordolabs.collect.util.ValueAnimatorBuilder
 import com.ordolabs.collect.util.viewId
 import com.ordolabs.collect.viewmodel.CreateItemViewModel.ItemType
 
@@ -39,7 +40,7 @@ class ItemTypesAdapter(
         val item = items[index]
         if (!item.isExpandable) return
 
-        holder.toggleExpand(item.isExpanded)
+        holder.toggleExpand(!item.isExpanded)
 
         if (item.isExpanded) {
             collapse(item, index)
@@ -99,10 +100,20 @@ class ItemTypesAdapter(
             dropdown.isInvisible = !hasChildren
         }
 
-        fun toggleExpand(isExpanded: Boolean) {
-            dropdown.rotation += 180f
-            if (dropdown.rotation == 360f) dropdown.rotation = 0f
+        fun toggleExpand(expand: Boolean) {
+            animateDropdownRotation(expand)
         }
+
+        private fun animateDropdownRotation(forward: Boolean) =
+            ValueAnimatorBuilder.of<Float>(forward) {
+                values {
+                    if (forward) arrayOf(0f, 180f) else arrayOf(360f, 180f)
+                }
+                updateListener {
+                    val value = animatedValue as Float
+                    dropdown.rotation = value
+                }
+            }.start()
     }
 }
 
