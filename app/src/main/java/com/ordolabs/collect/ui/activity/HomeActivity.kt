@@ -11,7 +11,7 @@ class HomeActivity : BaseActivity(R.layout.activity_home) {
 
     private fun setFAB() {
         home_fab.setOnClickListener {
-            val intent = NoteBuilderActivity.getStartIntent(this)
+            val intent = CreateItemActivity.getStartIntent(this)
             startActivity(intent)
         }
     }

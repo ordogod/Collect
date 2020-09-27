@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/accent_sky"
     app:cardCornerRadius="8dp"
     app:cardElevation="0dp">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/item_type_plain_name"
+        android:id="@+id/item_type_single_name"
         style="@style/TextBody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
