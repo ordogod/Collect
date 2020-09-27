@@ -12,11 +12,12 @@ class CreateItemViewModel : BaseViewModel() {
         val children: KList<ItemType> = emptyList()
     ) {
 
-        class Note : ItemType(R.string.builder_type_note)
-        class List : ItemType(R.string.builder_type_list, listOf(Ordered(), Unordered())) {
-            class Ordered : ItemType(R.string.builder_type_list_ordered)
-            class Unordered : ItemType(R.string.builder_type_list_unordered)
+        class Note : ItemType(R.string.create_type_note)
+        class List : ItemType(R.string.create_type_list, listOf(Ordered(), Unordered())) {
+            class Ordered : ItemType(R.string.create_type_list_ordered)
+            class Unordered : ItemType(R.string.create_type_list_unordered)
         }
+        class Counter : ItemType(R.string.create_type_counter)
 
         companion object {
             val collapsedCount: Int

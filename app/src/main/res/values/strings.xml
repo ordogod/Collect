@@ -3,10 +3,11 @@
     <string name="app_name">Collect</string>
 
     <!--~~~~~~~~~~~~~ NOTE BUILDER SCREEN ~~~~~~~~~~~~~~-->
-    <string name="builder_type_label">Select new item type:</string>
+    <string name="create_type_label">Select new item type:</string>
 
-    <string name="builder_type_note">Note</string>
-    <string name="builder_type_list">List</string>
-    <string name="builder_type_list_ordered">Ordered</string>
-    <string name="builder_type_list_unordered">Unordered</string>
+    <string name="create_type_note">Note</string>
+    <string name="create_type_list">List</string>
+    <string name="create_type_list_ordered">Ordered</string>
+    <string name="create_type_list_unordered">Unordered</string>
+    <string name="create_type_counter">Counter</string>
 </resources>
