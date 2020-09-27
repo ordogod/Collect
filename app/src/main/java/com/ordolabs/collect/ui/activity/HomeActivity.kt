@@ -1,6 +1,7 @@
 package com.ordolabs.collect.ui.activity
 
 import com.ordolabs.collect.R
+import com.ordolabs.collect.ui.activity.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : BaseActivity(R.layout.activity_home) {

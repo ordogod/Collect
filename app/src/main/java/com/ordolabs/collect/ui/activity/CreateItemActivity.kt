@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ordolabs.collect.R
+import com.ordolabs.collect.ui.activity.base.BaseActivity
+import com.ordolabs.collect.ui.activity.base.StartableActivity
 import kotlinx.android.synthetic.main.activity_create_item.*
 
 class CreateItemActivity : BaseActivity(R.layout.activity_create_item) {

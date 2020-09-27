@@ -26,6 +26,11 @@ abstract class BaseAdapter<T : Any, VH : BaseViewHolder<T>>(
     }
 
     /**
+     * Should be called to set data into `Adapter`.
+     */
+    abstract fun setItems(items: List<T>)
+
+    /**
      * Specifies way of creating instances of [VH].
      */
     protected abstract fun createViewHolder(itemView: View): VH

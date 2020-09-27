@@ -1,4 +1,4 @@
-package com.ordolabs.collect.ui.activity
+package com.ordolabs.collect.ui.activity.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
