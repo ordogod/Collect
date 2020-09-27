@@ -14,54 +14,58 @@ import com.ordolabs.collect.viewmodel.CreateItemViewModel.ItemType
 
 class ItemTypesAdapter(
     clicksListener: OnRecyclerItemClicksListener
-) : BaseAdapter<ItemType, ItemTypesAdapter.TypeViewHolder>(clicksListener) {
+) : BaseAdapter<TypeItem, ItemTypesAdapter.TypeViewHolder>(clicksListener) {
 
     private val types: MutableList<ItemType> = ItemType.getCollapsedList()
-    private val typesCollapsed: List<ItemType> = ItemType.getCollapsedList()
-    private val isTypeExpanded = MutableList(typesCollapsed.size) { false }
+    private val items: MutableList<TypeItem>
 
-    override fun setItems(items: List<ItemType>) {
+    init {
+        items = MutableList(types.size) { i ->
+            TypeItem(types[i])
+        }
+    }
+
+    override fun setItems(items: List<TypeItem>) {
         // items are defined already
     }
 
     override fun onBindViewHolder(holder: TypeViewHolder, position: Int) {
-        val item = types[position]
+        val item = items[position]
         holder.onBind(item)
     }
 
     override fun performClick(holder: TypeViewHolder) {
-        if (!holder.isExpandable) return
-//        val index = types.indexOf(holder.boundItem)
         val index = holder.bindingAdapterPosition
-        val isExpanded = isTypeExpanded[index]
+        val item = items[index]
+        if (!item.isExpandable) return
 
-        holder.toggleExpand(isExpanded)
+        holder.toggleExpand(item.isExpanded)
 
-        if (isExpanded) {
-            collapseItem(index)
+        if (item.isExpanded) {
+            collapse(item, index)
         } else {
-            expandItem(index)
+            expand(item, index)
         }
     }
 
-    private fun expandItem(itemIndex: Int) {
-        val targetItem = types[itemIndex]
-        val subtypes = targetItem.children
-        val insertIndex = itemIndex + 1
+    private fun expand(item: TypeItem, index: Int) {
+        val insertIndex = index + 1
+        val subtypes = item.type.children.map { TypeItem(it) }.toList()
 
-        types.addAll(insertIndex, subtypes)
-        isTypeExpanded[itemIndex] = true
+        items.addAll(insertIndex, subtypes)
+        item.isExpanded = true
         notifyItemRangeInserted(insertIndex, subtypes.size)
     }
 
-    private fun collapseItem(itemIndex: Int) {
-        val targetItem = types[itemIndex]
-        val subtypes = targetItem.children
-        val removeIndex = itemIndex + 1
+    private fun collapse(item: TypeItem, index: Int) {
+        val removeStartIndex = index + 1
+        val removeEndIndex = removeStartIndex + item.type.children.size
+        val subtypes = items.subList(removeStartIndex, removeEndIndex)
+        val removeCount = subtypes.size
 
-        types.removeAll(subtypes)
-        isTypeExpanded[itemIndex] = false
-        notifyItemRangeRemoved(removeIndex, subtypes.size)
+        items.removeAll(subtypes)
+        item.isExpanded = false
+        notifyItemRangeRemoved(removeStartIndex, removeCount)
     }
 
     override fun getItemViewLayout(viewType: Int): Int {
@@ -73,20 +77,17 @@ class ItemTypesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return types.size
+        return items.size
     }
 
-    class TypeViewHolder(root: View) : BaseViewHolder<ItemType>(root) {
+    class TypeViewHolder(root: View) : BaseViewHolder<TypeItem>(root) {
 
         private val name by viewId<AppCompatTextView>(R.id.item_create_type_name)
         private val dropdown by viewId<ImageView>(R.id.item_create_type_dropdown)
 
-        val isExpandable: Boolean
-            get() = boundItem.children.isNotEmpty()
-
-        override fun setViewsOnBind(item: ItemType) {
-            setTypeName(item.label)
-            setDropdownVisibility(item.children.isNotEmpty())
+        override fun setViewsOnBind(item: TypeItem) {
+            setTypeName(item.type.label)
+            setDropdownVisibility(item.type.children.isNotEmpty())
         }
 
         private fun setTypeName(@StringRes itemLabel: Int) {
@@ -103,4 +104,11 @@ class ItemTypesAdapter(
             if (dropdown.rotation == 360f) dropdown.rotation = 0f
         }
     }
+}
+
+data class TypeItem(
+    val type: ItemType
+) {
+    val isExpandable = type.children.isNotEmpty()
+    var isExpanded = false
 }
