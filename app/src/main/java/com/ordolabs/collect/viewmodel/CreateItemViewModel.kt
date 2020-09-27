@@ -20,23 +20,10 @@ class CreateItemViewModel : BaseViewModel() {
         class Counter : ItemType(R.string.create_type_counter)
 
         companion object {
-            val collapsedCount: Int
-                get() = collapsedList.size
-
-            val expandedCount: Int
-                get() = expandedList.size
-
-
-            // avoid any outer modifications, single entity
-            val collapsedList = listOf(
+            fun getCollapsedList() = mutableListOf(
                 Note(),
-                List()
-            )
-
-            // avoid any outer modifications, single entity
-            val expandedList = listOf(
-                Note(),
-                List(), List.Ordered(), List.Unordered()
+                List(),
+                Counter()
             )
         }
     }
