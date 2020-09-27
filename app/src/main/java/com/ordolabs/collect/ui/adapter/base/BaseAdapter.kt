@@ -53,17 +53,18 @@ abstract class BaseAdapter<T : Any, VH : BaseViewHolder<T>>(
     /**
      * Would be called on [VH]'s view click.
      */
-    @CallSuper
-    protected open fun onViewHolderClick(holder: VH) {
-        holder.performClick()
+    private fun onViewHolderClick(holder: VH) {
+        holder.onClick(holder.itemView)
+        clicksListener.onRecyclerItemClick(holder.bindingAdapterPosition)
     }
 
     /**
      * Would be called on [VH]'s view long click.
      */
-    protected open fun onViewHolderLongClick(holder: VH): Boolean {
-        holder.performLongClick()
-        return false
+    private fun onViewHolderLongClick(holder: VH): Boolean {
+        val consumed = holder.onLongClick(holder.itemView)
+        clicksListener.onRecyclerItemLongClick(holder.bindingAdapterPosition)
+        return consumed
     }
 
     /**

@@ -1,7 +1,6 @@
 package com.ordolabs.collect.ui.adapter.base
 
 import android.view.View
-import androidx.annotation.CallSuper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
@@ -12,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
  * @param T Type of data class, which this `ViewHolder` represents.
  */
 abstract class BaseViewHolder<T : Any>(itemView: View) :
-    RecyclerView.ViewHolder(itemView) {
+    RecyclerView.ViewHolder(itemView),
+    View.OnClickListener,
+    View.OnLongClickListener {
 
     /**
      * Returns [ViewHolder.itemView]'s [View.getTag],
@@ -36,24 +37,8 @@ abstract class BaseViewHolder<T : Any>(itemView: View) :
      */
     protected abstract fun setViewsOnBind(item: T)
 
-    /**
-     * Specifies the way, in which [itemView] should react to click.
-     */
-    @CallSuper
-    @Suppress("UNCHECKED_CAST")
-    open fun performClick() {
-        val adapter = bindingAdapter as? BaseAdapter<T, *> ?: return
-        adapter.clicksListener.onRecyclerItemClick(bindingAdapterPosition)
+    override fun onLongClick(v: View?): Boolean {
+        // default empty implementation
+        return false
     }
-
-    /**
-     * Specifies the way, in which [itemView] should react to long click.
-     */
-    @CallSuper
-    @Suppress("UNCHECKED_CAST")
-    open fun performLongClick() {
-        val adapter = bindingAdapter as? BaseAdapter<T, *> ?: return
-        adapter.clicksListener.onRecyclerItemLongClick(bindingAdapterPosition)
-    }
-
 }
