@@ -1,8 +1,11 @@
 package com.ordolabs.collect.ui.adapter
 
 import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.isInvisible
 import com.ordolabs.collect.R
 import com.ordolabs.collect.ui.adapter.base.BaseAdapter
 import com.ordolabs.collect.ui.adapter.base.BaseViewHolder
@@ -15,6 +18,7 @@ class ItemTypesAdapter(
 ) : BaseAdapter<ItemType, ItemTypesAdapter.TypeViewHolder>(clicksListener) {
 
     private val types: List<ItemType> = ItemType.expandedList
+    private val typesExpanded: List<Boolean> = MutableList(types.size) { false }
 
     override fun setItems(items: List<ItemType>) {
         // items are defined already
@@ -26,7 +30,7 @@ class ItemTypesAdapter(
     }
 
     override fun getItemViewLayout(viewType: Int): Int {
-        return R.layout.item_create_item_type_single
+        return R.layout.item_create_type
     }
 
     override fun createViewHolder(itemView: View): TypeViewHolder {
@@ -39,10 +43,12 @@ class ItemTypesAdapter(
 
     class TypeViewHolder(root: View) : BaseViewHolder<ItemType>(root) {
 
-        private val name by itemView.viewId<AppCompatTextView>(R.id.item_type_single_name)
+        private val name by viewId<AppCompatTextView>(R.id.item_create_type_name)
+        private val dropdown by viewId<ImageView>(R.id.item_create_type_dropdown)
 
         override fun setViewsOnBind(item: ItemType) {
             setTypeName(item.label)
+            setDropdownVisibility(item.children.isNotEmpty())
         }
 
         private fun setTypeName(@StringRes itemLabel: Int) {
@@ -50,5 +56,14 @@ class ItemTypesAdapter(
             name.text = typeName
         }
 
+        private fun setDropdownVisibility(hasChildren: Boolean) {
+            dropdown.isInvisible = !hasChildren
+        }
+
+        override fun onClick(v: View?) {
+            if (boundItem.children.isEmpty()) return
+
+            Toast.makeText(v?.context, "open", Toast.LENGTH_SHORT).show()
+        }
     }
 }
