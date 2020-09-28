@@ -11,21 +11,23 @@ import com.ordolabs.collect.R
 import com.ordolabs.collect.ui.adapter.base.BaseAdapter
 import com.ordolabs.collect.ui.adapter.base.BaseViewHolder
 import com.ordolabs.collect.ui.adapter.base.OnRecyclerItemClicksListener
+import com.ordolabs.collect.util.TreeNode
 import com.ordolabs.collect.util.ValueAnimatorBuilder
 import com.ordolabs.collect.util.viewId
+import com.ordolabs.collect.viewmodel.CreateItemViewModel
 import com.ordolabs.collect.viewmodel.CreateItemViewModel.ItemType
 
 class ItemTypesAdapter(
     clicksListener: OnRecyclerItemClicksListener
 ) : BaseAdapter<TypeItem, ItemTypesAdapter.TypeViewHolder>(clicksListener) {
 
-    private val types: MutableList<ItemType> = ItemType.getCollapsedList()
     private val items: MutableList<TypeItem>
 
     private var selectedHolder: TypeViewHolder? = null
     private var selectedItem: TypeItem? = null
 
     init {
+        val types = CreateItemViewModel.getTypes()
         items = MutableList(types.size) { i ->
             TypeItem(types[i])
         }
@@ -63,7 +65,7 @@ class ItemTypesAdapter(
 
     private fun stretch(holder: TypeViewHolder, item: TypeItem, index: Int) {
         val expanded = item.isExpanded
-        val childSelected = (item.type.children.contains(selectedItem?.type))
+        val childSelected = item.node.hasChild(selectedItem?.node)
         if (childSelected) return
 
         holder.toggleExpand(!expanded)
@@ -78,7 +80,7 @@ class ItemTypesAdapter(
 
     private fun expand(item: TypeItem, index: Int) {
         val insertIndex = index + 1
-        val subtypes = item.type.children.map { TypeItem(it) }.toList()
+        val subtypes = item.node.children.map { TypeItem(it) }.toList()
 
         items.addAll(insertIndex, subtypes)
         notifyItemRangeInserted(insertIndex, subtypes.size)
@@ -86,7 +88,7 @@ class ItemTypesAdapter(
 
     private fun collapse(item: TypeItem, index: Int) {
         val removeStartIndex = index + 1
-        val removeEndIndex = removeStartIndex + item.type.children.size
+        val removeEndIndex = removeStartIndex + item.node.children.size
         val subtypes = items.subList(removeStartIndex, removeEndIndex)
         val removeCount = subtypes.size
 
@@ -118,8 +120,8 @@ class ItemTypesAdapter(
         private val dropdown by viewId<ImageView>(R.id.item_create_type_dropdown)
 
         override fun setViewsOnBind(item: TypeItem) {
-            setTypeName(item.type.label)
-            setDropdownVisibility(item.type.children.isNotEmpty())
+            setTypeName(item.node.item.label)
+            setDropdownVisibility(item.node.children.isNotEmpty())
         }
 
         private fun setTypeName(@StringRes itemLabel: Int) {
@@ -153,8 +155,8 @@ class ItemTypesAdapter(
 }
 
 data class TypeItem(
-    val type: ItemType
+    val node: TreeNode<ItemType>
 ) {
-    val isExpandable = type.children.isNotEmpty()
+    val isExpandable = node.children.isNotEmpty()
     var isExpanded = false
 }
