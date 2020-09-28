@@ -10,12 +10,13 @@ import androidx.core.view.isInvisible
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.ordolabs.collect.R
+import com.ordolabs.collect.ui.adapter.ItemTypesAdapter.TypeViewHolder.Companion.VIEW_TYPE_GROUP
+import com.ordolabs.collect.ui.adapter.ItemTypesAdapter.TypeViewHolder.Companion.VIEW_TYPE_SINGLE
 import com.ordolabs.collect.ui.adapter.base.BaseAdapter
 import com.ordolabs.collect.ui.adapter.base.BaseViewHolder
 import com.ordolabs.collect.ui.adapter.base.OnRecyclerItemClicksListener
 import com.ordolabs.collect.util.TreeNode
 import com.ordolabs.collect.util.ValueAnimatorBuilder
-import com.ordolabs.collect.util.setBackgroundResourceSavingPaddings
 import com.ordolabs.collect.util.viewId
 import com.ordolabs.collect.viewmodel.CreateItemViewModel
 import com.ordolabs.collect.viewmodel.CreateItemViewModel.ItemType
@@ -49,7 +50,7 @@ class ItemTypesAdapter(
         val index = holder.bindingAdapterPosition
         val item = items[index]
 
-        if (!item.isExpandable) {
+        if (holder.itemViewType != VIEW_TYPE_GROUP) {
             select(holder, item)
         } else {
             stretch(holder, item, index)
@@ -99,8 +100,10 @@ class ItemTypesAdapter(
         notifyItemRangeRemoved(removeStartIndex, removeCount)
     }
 
-    override fun getItemViewLayout(viewType: Int): Int {
-        return R.layout.item_create_type
+    override fun getItemViewLayout(viewType: Int): Int = when (viewType) {
+        VIEW_TYPE_SINGLE -> R.layout.item_create_type_single
+        VIEW_TYPE_GROUP -> R.layout.item_create_type_group
+        else -> throw IllegalArgumentException("viewType=$viewType is unknown.")
     }
 
     override fun createViewHolder(itemView: View): TypeViewHolder {
@@ -109,6 +112,11 @@ class ItemTypesAdapter(
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val itemIsGroup = (!items[position].node.isLeaf)
+        return if (itemIsGroup) VIEW_TYPE_GROUP else VIEW_TYPE_SINGLE
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
@@ -123,21 +131,26 @@ class ItemTypesAdapter(
         private val dropdown by viewId<ImageView>(R.id.item_create_type_dropdown)
 
         override fun setViewsOnBind(item: TypeItem) {
-            setItemSelectable(item.isExpandable)
-            setItemOffset(item)
-            setTypeName(item.node.value.label)
-            setDropdownVisibility(item.node.children.isNotEmpty())
-        }
-
-        private fun setItemSelectable(itemIsGroup: Boolean) {
-            if (itemIsGroup) {
-                wrapper.background = null
-            } else {
-                wrapper.setBackgroundResourceSavingPaddings(R.drawable.btn_create_type)
+            setCommonViews(item)
+            when (itemViewType) {
+                VIEW_TYPE_SINGLE -> setSingleTypeViews(item)
+                VIEW_TYPE_GROUP -> setGroupTypeViews(item)
             }
         }
 
-        private fun setItemOffset(item: TypeItem) {
+        private fun setCommonViews(item: TypeItem) {
+            setTypeName(item.node.value.label)
+        }
+
+        private fun setSingleTypeViews(item: TypeItem) {
+            setGroupItemOffset(item)
+        }
+
+        private fun setGroupTypeViews(item: TypeItem) {
+            setDropdownVisibility(item.node.children.isNotEmpty())
+        }
+
+        private fun setGroupItemOffset(item: TypeItem) {
             val itemIsInGroup = (item.node.parent != null)
             val totalOffset = if (itemIsInGroup) {
                 val nesting = item.node.height
@@ -179,12 +192,16 @@ class ItemTypesAdapter(
                     dropdown.rotation = value
                 }
             }.start()
+
+        companion object {
+            const val VIEW_TYPE_SINGLE = 0
+            const val VIEW_TYPE_GROUP = 1
+        }
     }
 }
 
 data class TypeItem(
     val node: TreeNode<ItemType>
 ) {
-    val isExpandable = node.children.isNotEmpty()
     var isExpanded = false
 }

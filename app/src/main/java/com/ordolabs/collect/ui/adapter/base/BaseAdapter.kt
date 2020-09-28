@@ -17,7 +17,7 @@ abstract class BaseAdapter<T : Any, VH : BaseViewHolder<T>>(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val root = createItemView(parent, viewType)
         val holder = createViewHolder(root)
-        setViewHolder(holder)
+        setViewHolder(holder, viewType)
         return holder
     }
 
@@ -45,7 +45,7 @@ abstract class BaseAdapter<T : Any, VH : BaseViewHolder<T>>(
      * Configurates specified [holder] and its view.
      */
     @CallSuper
-    protected open fun setViewHolder(holder: VH) {
+    protected open fun setViewHolder(holder: VH, viewType: Int) {
         holder.itemView.setOnClickListener { onViewHolderClick(holder) }
         holder.itemView.setOnLongClickListener { onViewHolderLongClick(holder) }
     }

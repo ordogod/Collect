@@ -20,19 +20,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/item_create_type_name"
             style="@style/TextBody"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:textColor="@color/text_body"
             tools:text="Note" />
-
-        <ImageView
-            android:id="@+id/item_create_type_dropdown"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_drop_down_gray"
-            android:visibility="invisible"
-            tools:visibility="visible" />
 
     </LinearLayout>
 
