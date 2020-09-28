@@ -8,19 +8,22 @@
     </style>
 
     <!--~~~~~~~~~~~~~~~~~~~~~ TEXT ~~~~~~~~~~~~~~~~~~~~-->
-    <style name="TextTitle" parent="TextAppearance.AppCompat">
+    <style name="TextGeneric" parent="TextAppearance.AppCompat">
         <!-- override me -->
         <item name="android:textColor">@color/super_red</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="TextTitle" parent="TextGeneric">
         <item name="android:textSize">@dimen/text_title</item>
-        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">@font/raleway_regular</item>
         <item name="android:letterSpacing">@dimen/text_spacing_medium</item>
     </style>
 
-    <style name="TextBody" parent="TextAppearance.AppCompat">
-        <!-- override me -->
-        <item name="android:textColor">@color/super_red</item>
+    <style name="TextBody" parent="TextGeneric">
         <item name="android:textSize">@dimen/text_body</item>
-        <item name="fontFamily">sans-serif</item>
+        <item name="android:fontFamily">@font/raleway_medium</item>
         <item name="android:letterSpacing">@dimen/text_spacing_small</item>
     </style>
 
