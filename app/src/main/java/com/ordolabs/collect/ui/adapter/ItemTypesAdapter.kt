@@ -1,11 +1,13 @@
 package com.ordolabs.collect.ui.adapter
 
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isInvisible
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.ordolabs.collect.R
 import com.ordolabs.collect.ui.adapter.base.BaseAdapter
@@ -121,17 +123,32 @@ class ItemTypesAdapter(
         private val dropdown by viewId<ImageView>(R.id.item_create_type_dropdown)
 
         override fun setViewsOnBind(item: TypeItem) {
-            setWrapperSelectable(item)
-            setTypeName(item.node.item.label)
+            setItemSelectable(item.isExpandable)
+            setItemOffset(item)
+            setTypeName(item.node.value.label)
             setDropdownVisibility(item.node.children.isNotEmpty())
         }
 
-        private fun setWrapperSelectable(item: TypeItem) {
-            val itemIsGroup = item.isExpandable
+        private fun setItemSelectable(itemIsGroup: Boolean) {
             if (itemIsGroup) {
                 wrapper.background = null
             } else {
                 wrapper.setBackgroundResourceSavingPaddings(R.drawable.btn_create_type)
+            }
+        }
+
+        private fun setItemOffset(item: TypeItem) {
+            val itemIsInGroup = (item.node.parent != null)
+            val totalOffset = if (itemIsInGroup) {
+                val nesting = item.node.height
+                val offset = itemView.resources
+                    .getDimensionPixelOffset(R.dimen.item_create_type_ingroup_offset)
+                offset * nesting
+            } else {
+                0
+            }
+            itemView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                marginStart = totalOffset
             }
         }
 
