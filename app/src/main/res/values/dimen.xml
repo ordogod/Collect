@@ -9,4 +9,8 @@
     <dimen name="text_body">16sp</dimen>
     <dimen name="text_title">18sp</dimen>
 
+    <item name="text_spacing_small" type="dimen" format="float">0.015</item>
+    <item name="text_spacing_medium" type="dimen" format="float">0.030</item>
+    <item name="text_spacing_big" type="dimen" format="float">0.040</item>
+
 </resources>

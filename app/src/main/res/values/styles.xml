@@ -12,8 +12,8 @@
         <!-- override me -->
         <item name="android:textColor">@color/super_red</item>
         <item name="android:textSize">@dimen/text_title</item>
-        <item name="fontFamily">sans-serif-light</item>
-        <item name="android:letterSpacing">0.03</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:letterSpacing">@dimen/text_spacing_medium</item>
     </style>
 
     <style name="TextBody" parent="TextAppearance.AppCompat">
@@ -21,7 +21,7 @@
         <item name="android:textColor">@color/super_red</item>
         <item name="android:textSize">@dimen/text_body</item>
         <item name="fontFamily">sans-serif</item>
-        <item name="android:letterSpacing">0.02</item>
+        <item name="android:letterSpacing">@dimen/text_spacing_small</item>
     </style>
 
     <!--~~~~~~~~~~~~~~~~~~~~ TOOLBAR ~~~~~~~~~~~~~~~~~~~-->
@@ -32,7 +32,7 @@
 
     <style name="ToolbarTitleTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/text_title</item>
-        <item name="android:letterSpacing">0.03</item>
+        <item name="android:letterSpacing">@dimen/text_spacing_medium</item>
     </style>
 
 </resources>
