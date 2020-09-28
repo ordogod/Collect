@@ -13,6 +13,7 @@ import com.ordolabs.collect.ui.adapter.base.BaseViewHolder
 import com.ordolabs.collect.ui.adapter.base.OnRecyclerItemClicksListener
 import com.ordolabs.collect.util.TreeNode
 import com.ordolabs.collect.util.ValueAnimatorBuilder
+import com.ordolabs.collect.util.setBackgroundResourceSavingPaddings
 import com.ordolabs.collect.util.viewId
 import com.ordolabs.collect.viewmodel.CreateItemViewModel
 import com.ordolabs.collect.viewmodel.CreateItemViewModel.ItemType
@@ -120,8 +121,18 @@ class ItemTypesAdapter(
         private val dropdown by viewId<ImageView>(R.id.item_create_type_dropdown)
 
         override fun setViewsOnBind(item: TypeItem) {
+            setWrapperSelectable(item)
             setTypeName(item.node.item.label)
             setDropdownVisibility(item.node.children.isNotEmpty())
+        }
+
+        private fun setWrapperSelectable(item: TypeItem) {
+            val itemIsGroup = item.isExpandable
+            if (itemIsGroup) {
+                wrapper.background = null
+            } else {
+                wrapper.setBackgroundResourceSavingPaddings(R.drawable.btn_create_type)
+            }
         }
 
         private fun setTypeName(@StringRes itemLabel: Int) {
