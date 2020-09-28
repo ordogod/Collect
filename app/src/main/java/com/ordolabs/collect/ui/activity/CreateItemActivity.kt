@@ -32,9 +32,9 @@ class CreateItemActivity : BaseActivity(R.layout.activity_create_item),
         // nothing's here for a while
     }
 
-    override fun onStop() {
+    override fun onDestroy() {
         create_types_recycler.adapter = null
-        super.onStop()
+        super.onDestroy()
     }
 
     companion object : StartableActivity {

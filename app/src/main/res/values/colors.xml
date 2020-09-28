@@ -11,7 +11,7 @@
 
     <!--~~~~~~~~~~~~~~~~~~~~~ TEXT ~~~~~~~~~~~~~~~~~~~~~-->
     <color name="text_title">#000000</color>
-    <color name="text_body">#676767</color>
+    <color name="text_body">#505050</color>
     <color name="text_light">@android:color/white</color>
 
     <!--~~~~~~~~~~~~~~~~~~~~ STUFF ~~~~~~~~~~~~~~~~~~~~~-->
