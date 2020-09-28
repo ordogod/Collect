@@ -2,9 +2,11 @@ package com.ordolabs.collect.ui.adapter
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isInvisible
+import androidx.recyclerview.widget.RecyclerView
 import com.ordolabs.collect.R
 import com.ordolabs.collect.ui.adapter.base.BaseAdapter
 import com.ordolabs.collect.ui.adapter.base.BaseViewHolder
@@ -19,6 +21,9 @@ class ItemTypesAdapter(
 
     private val types: MutableList<ItemType> = ItemType.getCollapsedList()
     private val items: MutableList<TypeItem>
+
+    private var selectedHolder: TypeViewHolder? = null
+    private var selectedItem: TypeItem? = null
 
     init {
         items = MutableList(types.size) { i ->
@@ -38,11 +43,33 @@ class ItemTypesAdapter(
     override fun performClick(holder: TypeViewHolder) {
         val index = holder.bindingAdapterPosition
         val item = items[index]
-        if (!item.isExpandable) return
 
-        holder.toggleExpand(!item.isExpanded)
+        if (!item.isExpandable) {
+            select(holder, item)
+        } else {
+            stretch(holder, item, index)
+        }
+    }
 
-        if (item.isExpanded) {
+    private fun select(holder: TypeViewHolder, item: TypeItem) {
+        if (holder == selectedHolder) return
+
+        selectedHolder?.toggleSelected(false)
+        holder.toggleSelected(true)
+
+        selectedItem = item
+        selectedHolder = holder
+    }
+
+    private fun stretch(holder: TypeViewHolder, item: TypeItem, index: Int) {
+        val expanded = item.isExpanded
+        val childSelected = (item.type.children.contains(selectedItem?.type))
+        if (childSelected) return
+
+        holder.toggleExpand(!expanded)
+        item.isExpanded = !expanded
+
+        if (expanded) {
             collapse(item, index)
         } else {
             expand(item, index)
@@ -54,7 +81,6 @@ class ItemTypesAdapter(
         val subtypes = item.type.children.map { TypeItem(it) }.toList()
 
         items.addAll(insertIndex, subtypes)
-        item.isExpanded = true
         notifyItemRangeInserted(insertIndex, subtypes.size)
     }
 
@@ -65,7 +91,6 @@ class ItemTypesAdapter(
         val removeCount = subtypes.size
 
         items.removeAll(subtypes)
-        item.isExpanded = false
         notifyItemRangeRemoved(removeStartIndex, removeCount)
     }
 
@@ -81,8 +106,14 @@ class ItemTypesAdapter(
         return items.size
     }
 
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        this.selectedItem = null
+        this.selectedHolder = null
+    }
+
     class TypeViewHolder(root: View) : BaseViewHolder<TypeItem>(root) {
 
+        private val wrapper by viewId<LinearLayout>(R.id.item_create_type_wrapper)
         private val name by viewId<AppCompatTextView>(R.id.item_create_type_name)
         private val dropdown by viewId<ImageView>(R.id.item_create_type_dropdown)
 
@@ -98,6 +129,10 @@ class ItemTypesAdapter(
 
         private fun setDropdownVisibility(hasChildren: Boolean) {
             dropdown.isInvisible = !hasChildren
+        }
+
+        fun toggleSelected(selected: Boolean) {
+            wrapper.isSelected = selected
         }
 
         fun toggleExpand(expand: Boolean) {

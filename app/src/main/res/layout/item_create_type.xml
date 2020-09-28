@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/size_8"
-    app:cardBackgroundColor="@color/accent_sky"
+    app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="@dimen/size_16"
     app:cardElevation="0dp">
 
     <LinearLayout
+        android:id="@+id/item_create_type_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_create_type"
         android:orientation="horizontal"
         android:padding="@dimen/size_16">
 
@@ -21,14 +23,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/text_light"
+            android:textColor="@color/text_body"
             tools:text="Note" />
 
         <ImageView
             android:id="@+id/item_create_type_dropdown"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_drop_down_white"
+            android:src="@drawable/ic_drop_down_gray"
             android:visibility="invisible"
             tools:visibility="visible" />
 

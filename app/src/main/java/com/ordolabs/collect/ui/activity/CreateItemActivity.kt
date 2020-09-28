@@ -32,6 +32,11 @@ class CreateItemActivity : BaseActivity(R.layout.activity_create_item),
         // nothing's here for a while
     }
 
+    override fun onStop() {
+        create_types_recycler.adapter = null
+        super.onStop()
+    }
+
     companion object : StartableActivity {
         override fun getStartIntent(caller: Context): Intent {
             return Intent(caller, CreateItemActivity::class.java)
