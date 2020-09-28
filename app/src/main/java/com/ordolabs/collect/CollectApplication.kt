@@ -1,6 +1,7 @@
 package com.ordolabs.collect
 
 import android.app.Application
+import android.content.Context
 import com.ordolabs.collect.di.DBSourceModule
 import com.ordolabs.collect.di.useCaseModule
 import com.ordolabs.collect.di.viewModelModule
@@ -11,9 +12,12 @@ class CollectApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        context = applicationContext
 
         setKoin()
     }
+
+
 
     private fun setKoin() {
         startKoin {
@@ -24,5 +28,9 @@ class CollectApplication : Application() {
                 viewModelModule
             )
         }
+    }
+
+    companion object {
+        lateinit var context: Context
     }
 }
