@@ -48,6 +48,7 @@ class ItemTypesAdapter(
 
     override fun performClick(holder: TypeViewHolder) {
         val index = holder.bindingAdapterPosition
+        ensureIndexInItemsRange(index) ?: return
         val item = items[index]
 
         if (holder.itemViewType != VIEW_TYPE_GROUP) {
@@ -98,6 +99,11 @@ class ItemTypesAdapter(
 
         items.removeAll(subtypes)
         notifyItemRangeRemoved(removeStartIndex, removeCount)
+    }
+
+    private fun ensureIndexInItemsRange(index: Int): Unit? {
+        if (index >= 0 && index < items.size) return Unit
+        return null
     }
 
     override fun getItemViewLayout(viewType: Int): Int = when (viewType) {
