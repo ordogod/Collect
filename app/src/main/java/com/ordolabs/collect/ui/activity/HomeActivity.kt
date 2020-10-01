@@ -7,11 +7,11 @@ import kotlinx.android.synthetic.main.activity_home.*
 class HomeActivity : BaseActivity(R.layout.activity_home) {
 
     override fun setViews() {
-        setFAB()
+        setCreateFAB()
     }
 
-    private fun setFAB() {
-        home_fab.setOnClickListener {
+    private fun setCreateFAB() {
+        home_create_fab.setOnClickListener {
             val intent = CreateItemActivity.getStartIntent(this)
             startActivity(intent)
         }
