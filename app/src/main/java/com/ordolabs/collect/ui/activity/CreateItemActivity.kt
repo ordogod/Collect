@@ -46,9 +46,7 @@ class CreateItemActivity : BaseActivity(R.layout.activity_create_item),
     }
 
     private fun onDoneFabClick() {
-        val params = makeItemParams()
-        val intent = EditItemActivity.getStartIntent(this, params)
-        startActivity(intent)
+        startEditItemActivity()
     }
 
     override fun onRecyclerItemClick(position: Int) {
@@ -61,6 +59,14 @@ class CreateItemActivity : BaseActivity(R.layout.activity_create_item),
             isEnabled = true
             alpha = 1f
         }
+    }
+
+    private fun startEditItemActivity() {
+        val params = makeItemParams()
+        val intent = EditItemActivity.getStartIntent(this, params)
+
+        startActivity(intent)
+        finish()
     }
 
     private fun makeItemParams(): ItemParams {
