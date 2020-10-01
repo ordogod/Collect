@@ -26,4 +26,9 @@ abstract class BaseActivity(@LayoutRes private val layoutResId: Int) : AppCompat
     protected open fun setViews() {
         // override me
     }
+
+    companion object {
+
+        const val EXTRA_ITEM_PARAMS = "com.ordolabs.collect.EXTRA_ITEM_PARAMS"
+    }
 }

@@ -1,14 +1,14 @@
 package com.ordolabs.collect.viewmodel
 
-import androidx.annotation.StringRes
 import com.ordolabs.collect.R
+import com.ordolabs.collect.model.item.ItemType
 import com.ordolabs.collect.util.struct.TreeNode
 
 class CreateItemViewModel : BaseViewModel() {
 
     companion object {
 
-        fun getTypes() = listOf(
+        internal fun getItemTypes() = listOf(
             TreeNode(ItemType(R.string.create_type_note)),
             TreeNode(
                 ItemType(R.string.create_type_list), listOf(
@@ -19,8 +19,4 @@ class CreateItemViewModel : BaseViewModel() {
             TreeNode(ItemType(R.string.create_type_counter))
         )
     }
-
-    data class ItemType(
-        @StringRes val label: Int
-    )
 }

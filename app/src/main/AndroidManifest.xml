@@ -24,6 +24,8 @@
 
         <activity android:name=".ui.activity.CreateItemActivity" />
 
+        <activity android:name=".ui.activity.EditItemActivity" />
+
     </application>
 
 </manifest>

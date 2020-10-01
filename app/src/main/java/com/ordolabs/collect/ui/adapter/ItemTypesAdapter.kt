@@ -10,6 +10,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 import com.ordolabs.collect.R
+import com.ordolabs.collect.model.item.ItemType
 import com.ordolabs.collect.ui.adapter.ItemTypesAdapter.TypeViewHolder.Companion.VIEW_TYPE_GROUP
 import com.ordolabs.collect.ui.adapter.ItemTypesAdapter.TypeViewHolder.Companion.VIEW_TYPE_SINGLE
 import com.ordolabs.collect.ui.adapter.base.BaseAdapter
@@ -19,7 +20,6 @@ import com.ordolabs.collect.util.struct.TreeNode
 import com.ordolabs.collect.util.viewId
 import com.ordolabs.collect.util.wrapper.ValueAnimatorBuilder
 import com.ordolabs.collect.viewmodel.CreateItemViewModel
-import com.ordolabs.collect.viewmodel.CreateItemViewModel.ItemType
 
 class ItemTypesAdapter(
     clicksListener: OnRecyclerItemClicksListener
@@ -31,7 +31,7 @@ class ItemTypesAdapter(
     private var selectedItem: TypeItem? = null
 
     init {
-        val types = CreateItemViewModel.getTypes()
+        val types = CreateItemViewModel.getItemTypes()
         items = MutableList(types.size) { i ->
             TypeItem(types[i])
         }
@@ -39,6 +39,11 @@ class ItemTypesAdapter(
 
     override fun setItems(items: List<TypeItem>) {
         // items are defined already
+    }
+
+    fun getSelectedType(): ItemType? {
+        val item = selectedItem ?: return null
+        return item.node.value
     }
 
     override fun onBindViewHolder(holder: TypeViewHolder, position: Int) {
@@ -145,7 +150,7 @@ class ItemTypesAdapter(
         }
 
         private fun setCommonViews(item: TypeItem) {
-            setTypeName(item.node.value.label)
+            setTypeName(item.node.value.labelId)
         }
 
         private fun setSingleTypeViews(item: TypeItem) {

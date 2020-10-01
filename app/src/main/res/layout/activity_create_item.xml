@@ -40,10 +40,12 @@
         app:layout_constraintTop_toBottomOf="@+id/create_type_label" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/create_types_done"
+        android:id="@+id/create_type_done_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_16"
+        android:alpha="@dimen/fab_disabled_opacity"
+        android:enabled="false"
         android:src="@drawable/ic_check_white"
         app:backgroundTint="@color/accent_sky"
         app:borderWidth="0dp"
