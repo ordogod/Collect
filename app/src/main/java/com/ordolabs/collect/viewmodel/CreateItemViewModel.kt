@@ -2,7 +2,7 @@ package com.ordolabs.collect.viewmodel
 
 import androidx.annotation.StringRes
 import com.ordolabs.collect.R
-import com.ordolabs.collect.util.TreeNode
+import com.ordolabs.collect.util.struct.TreeNode
 
 class CreateItemViewModel : BaseViewModel() {
 
@@ -10,10 +10,12 @@ class CreateItemViewModel : BaseViewModel() {
 
         fun getTypes() = listOf(
             TreeNode(ItemType(R.string.create_type_note)),
-            TreeNode(ItemType(R.string.create_type_list), listOf(
-                ItemType(R.string.create_type_list_ordered),
-                ItemType(R.string.create_type_list_unordered)
-            )),
+            TreeNode(
+                ItemType(R.string.create_type_list), listOf(
+                    ItemType(R.string.create_type_list_ordered),
+                    ItemType(R.string.create_type_list_unordered)
+                )
+            ),
             TreeNode(ItemType(R.string.create_type_counter))
         )
     }

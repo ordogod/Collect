@@ -15,9 +15,9 @@ import com.ordolabs.collect.ui.adapter.ItemTypesAdapter.TypeViewHolder.Companion
 import com.ordolabs.collect.ui.adapter.base.BaseAdapter
 import com.ordolabs.collect.ui.adapter.base.BaseViewHolder
 import com.ordolabs.collect.ui.adapter.base.OnRecyclerItemClicksListener
-import com.ordolabs.collect.util.TreeNode
-import com.ordolabs.collect.util.ValueAnimatorBuilder
+import com.ordolabs.collect.util.struct.TreeNode
 import com.ordolabs.collect.util.viewId
+import com.ordolabs.collect.util.wrapper.ValueAnimatorBuilder
 import com.ordolabs.collect.viewmodel.CreateItemViewModel
 import com.ordolabs.collect.viewmodel.CreateItemViewModel.ItemType
 

@@ -1,4 +1,4 @@
-package com.ordolabs.collect.util
+package com.ordolabs.collect.util.struct
 
 import kotlin.math.max
 

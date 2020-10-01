@@ -1,4 +1,4 @@
-package com.ordolabs.collect.util
+package com.ordolabs.collect.util.wrapper
 
 import android.animation.ValueAnimator
 import android.view.animation.Interpolator
