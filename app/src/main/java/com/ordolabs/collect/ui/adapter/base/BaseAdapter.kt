@@ -84,4 +84,13 @@ abstract class BaseAdapter<T : Any, VH : BaseViewHolder<T>>(
         val layout = getItemViewLayout(viewType)
         return LayoutInflater.from(parent.context).inflate(layout, parent, false)
     }
+
+    /**
+     * @return `Unit`, if specified [index] is in [getItemCount] range,
+     * `null` otherwise.
+     */
+    protected fun ensureIndexInItemsRange(index: Int): Unit? {
+        if (index in 0 until itemCount) return Unit
+        return null
+    }
 }

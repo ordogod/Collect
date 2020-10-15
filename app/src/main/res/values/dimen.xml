@@ -13,8 +13,6 @@
     <item name="text_spacing_medium" type="dimen" format="float">0.025</item>
     <item name="text_spacing_big" type="dimen" format="float">0.035</item>
 
-    <dimen name="item_create_type_ingroup_offset">@dimen/size_16</dimen>
-
     <item name="fab_disabled_opacity" type="dimen" format="float">0.6</item>
 
 </resources>

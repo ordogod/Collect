@@ -10,12 +10,8 @@ class CreateItemViewModel : BaseViewModel() {
 
         internal fun getItemTypes() = listOf(
             TreeNode(ItemType(R.string.create_type_note)),
-            TreeNode(
-                ItemType(R.string.create_type_list), listOf(
-                    ItemType(R.string.create_type_list_ordered),
-                    ItemType(R.string.create_type_list_unordered)
-                )
-            ),
+            TreeNode(ItemType(R.string.create_type_list_ordered)),
+            TreeNode(ItemType(R.string.create_type_list_unordered)),
             TreeNode(ItemType(R.string.create_type_counter))
         )
     }
