@@ -1,7 +1,5 @@
 package com.ordolabs.collect.ui.activity
 
-import android.content.Context
-import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ordolabs.collect.R
 import com.ordolabs.collect.model.item.ItemParams
@@ -63,21 +61,11 @@ class CreateItemActivity : BaseActivity(R.layout.activity_create_item),
 
     private fun startEditItemActivity() {
         val params = makeItemParams()
-        val intent = EditItemActivity.getStartIntent(this, params)
-
-        startActivity(intent)
-        finish()
+        navigator.startEditItemActivity(this, params, closeSelf = true)
     }
 
     private fun makeItemParams(): ItemParams {
         val type = typesAdapter.getSelectedType()!!
         return ItemParams(type)
-    }
-
-    companion object {
-
-        fun getStartIntent(caller: Context): Intent {
-            return Intent(caller, CreateItemActivity::class.java)
-        }
     }
 }

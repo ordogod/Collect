@@ -3,6 +3,7 @@ package com.ordolabs.collect
 import android.app.Application
 import android.content.Context
 import com.ordolabs.collect.di.DBSourceModule
+import com.ordolabs.collect.di.singletonsModule
 import com.ordolabs.collect.di.useCaseModule
 import com.ordolabs.collect.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -25,7 +26,8 @@ class CollectApplication : Application() {
             modules(
                 DBSourceModule,
                 useCaseModule,
-                viewModelModule
+                viewModelModule,
+                singletonsModule
             )
         }
     }

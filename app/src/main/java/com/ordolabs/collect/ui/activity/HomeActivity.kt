@@ -12,8 +12,7 @@ class HomeActivity : BaseActivity(R.layout.activity_home) {
 
     private fun setCreateFAB() {
         home_create_fab.setOnClickListener {
-            val intent = CreateItemActivity.getStartIntent(this)
-            startActivity(intent)
+            navigator.startCreateItemActivity(this)
         }
     }
 
