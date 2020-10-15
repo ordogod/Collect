@@ -9,7 +9,8 @@ import com.ordolabs.collect.ui.activity.HomeActivity
 import com.ordolabs.collect.ui.activity.base.BaseActivity
 
 /**
- *
+ * Knows how to create [Intent]-s for each application's [Activity]
+ * and start them.
  */
 class Navigator {
 

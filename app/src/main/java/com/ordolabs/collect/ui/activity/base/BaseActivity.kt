@@ -1,6 +1,7 @@
 package com.ordolabs.collect.ui.activity.base
 
 import android.os.Bundle
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.ordolabs.collect.ui.navigation.Navigator
@@ -20,7 +21,15 @@ abstract class BaseActivity(@LayoutRes private val layoutResId: Int) : AppCompat
     /**
      * Configures non-view components.
      */
+    @CallSuper
     protected open fun setUp() {
+        parseStartIntent()
+    }
+
+    /**
+     * Parses `Intent`, that started this `Activity`.
+     */
+    protected open fun parseStartIntent() {
         // override me
     }
 
